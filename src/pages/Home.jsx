@@ -56,7 +56,8 @@ const Home = () => {
                             isRotaring={isRotating}
                             setIsRotating={setIsRotating}
                     />
-                    <Plane/>
+                    <Plane isRotating={isRotating} planeScale={planeScale} planePosition={planePosition}
+                           rotation={[0, 20, 0]}/>
                 </Suspense>
             </Canvas>
         </section>
