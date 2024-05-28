@@ -1,10 +1,16 @@
-import React, {useRef, useEffect} from 'react'
+import {a} from '@react-spring/three'
+import {useRef, useEffect} from 'react'
 import {useGLTF} from '@react-three/drei'
 import {useFrame, useThree} from "@react-three/fiber";
 import islandScene from '../assets/3d/island.glb'
-import {a} from '@react-spring/three'
 
-const Islands = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
+const Islands = ({
+                     isRotating,
+                     setIsRotating,
+                     setCurrentStage,
+                     currentFocusPoint,
+                     ...props
+                 }) => {
     const islandRef = useRef();
     const {gl, viewport} = useThree()
     const {nodes, materials} = useGLTF(islandScene)
@@ -89,7 +95,7 @@ const Islands = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
     })
 
     useEffect(() => {
-        const canvas=gl.domElement
+        const canvas = gl.domElement
         canvas.addEventListener('pointerdown', handlePointerDown)
         canvas.addEventListener('pointerup', handlePointerUp)
         canvas.addEventListener('pointermove', handlePointerMove)

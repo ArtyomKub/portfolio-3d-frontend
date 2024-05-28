@@ -1,32 +1,19 @@
-import React, {useState} from 'react';
-import {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
-import Loader from "../components/Loader";
-import Island from "../models/Island"
-import Sky from "../models/Sky.jsx";
-import Bird from "../models/Bird.jsx";
-import Plane from "../models/Plane.jsx";
+import {Suspense, useState} from "react";
 import HomeInfo from "../components/HomeInfo.jsx";
+import Loader from "../components/Loader.jsx";
+import Bird from '../models/Bird.jsx'
+import Sky from "../models/Sky.jsx";
+import Island from "../models/Island.jsx";
+import Plane from "../models/Plane.jsx";
 
 
 const Home = () => {
 
-    const [isRotating, setIsRotating] = useState(false)
     const [currentStage, setCurrentStage] = useState(1)
 
+    const [isRotating, setIsRotating] = useState(false)
 
-    const adjustIslandForScreenSize = () => {
-        let screenScale = null;
-        let screenPosition = [0, -6.5, -43];
-        let rotation = [0.1, 4.7, 0];
-
-        if (window.innerWidth < 768) {
-            screenScale = [0.9, 0.9, 0.9];
-        } else {
-            screenScale = [1, 1, 1];
-        }
-        return [screenScale, screenPosition, rotation]
-    }
     const adjustPlaneForScreenSize = () => {
         let screenScale, screenPosition;
         if (window.innerWidth < 768) {
@@ -39,8 +26,23 @@ const Home = () => {
         return [screenScale, screenPosition]
     }
 
-    const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
+    const adjustIslandForScreenSize = () => {
+        let screenScale, screenPosition
+        if (window.innerWidth < 768) {
+            screenScale = [0.9, 0.9, 0.9];
+            screenPosition = [0, -6.5, -43.4];
+        } else {
+            screenScale = [1, 1, 1];
+            screenPosition = [0, -6.5, -43.4];
+        }
+
+        return [screenScale, screenPosition];
+    };
+
     const [planeScale, planePosition] = adjustPlaneForScreenSize()
+
+    const [islandScale, islandPosition] = adjustIslandForScreenSize();
+
 
     return (
         <section className="w-full h-screen relative">
@@ -52,19 +54,31 @@ const Home = () => {
                 <Suspense fallback={<Loader/>}>
                     <directionalLight position={[1, 1, 1]} intensity={2}/>
                     <ambientLight intensity={0.5}/>
-                    <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
+                    <pointLight position={[10, 5, 10]} intensity={2}/>
+                    <spotLight
+                        position={[0, 50, 10]}
+                        angle={0.15}
+                        penumbra={1}
+                        intensity={2}
+                    />
+                    <hemisphereLight
+                        skyColor='#b1e1ff'
+                        groundColor='#000000'
+                        intensity={1}
+                    />
+
                     <Bird/>
                     <Sky isRotating={isRotating}/>
                     <Island position={islandPosition}
                             scale={islandScale}
-                            rotation={islandRotation}
+                            rotation={[0.1, 4.7077, 0]}
                             isRotaring={isRotating}
                             setIsRotating={setIsRotating}
                             setCurrentStage={setCurrentStage}
                     />
                     <Plane isRotating={isRotating}
                            planeScale={planeScale} planePosition={planePosition}
-                           rotation={[0, 20, 0]}/>
+                           rotation={[0, 20.1, 0]}/>
                 </Suspense>
             </Canvas>
         </section>
