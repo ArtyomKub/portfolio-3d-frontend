@@ -22,6 +22,8 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
         e.stopPropagation()
         e.preventDefault()
         setIsRotating(true)
+        const clientX = e.touches ? e.touches[0].clientX : clientX
+        lastX.current = clientX
     }
 
     const handlePointerUp = (e) => {
@@ -34,7 +36,6 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
         e.stopPropagation()
         e.preventDefault()
     }
-
 
 
     return (
