@@ -3,10 +3,10 @@ import planeScene from '../assets/3d/plane.glb'
 import {useGLTF} from "@react-three/drei";
 
 const Plane = () => {
-    const plane = useGLTF(planeScene)
+    const {scene, animations} = useGLTF(planeScene)
     return (
         <mesh>
-            <primitive object={plane.scene}/>
+            <primitive object={scene}/>
         </mesh>
     );
 };
