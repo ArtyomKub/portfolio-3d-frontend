@@ -24,6 +24,14 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
         setIsRotating(true)
     }
 
+    const handlePointerUp = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setIsRotating(false)
+    }
+
+
+
     return (
         <a.group ref={islandRef} {...props}>
             <mesh
