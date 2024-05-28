@@ -89,9 +89,7 @@ const Islands = ({
                 default:
                     setCurrentStage(null);
             }
-
         }
-
     })
 
     useEffect(() => {
