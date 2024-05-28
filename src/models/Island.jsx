@@ -48,6 +48,9 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
 
     }
 
+    useEffect(()=>{
+
+    },[gl, handlePointerDown, handlePointerUp, handlePointerMove])
 
     return (
         <a.group ref={islandRef} {...props}>
