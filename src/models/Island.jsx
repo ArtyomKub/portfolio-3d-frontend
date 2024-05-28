@@ -8,11 +8,21 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
 
     const islandRef = useRef();
 
-    const {gl, viewport}=useThree()
+    const {gl, viewport} = useThree()
 
     const {nodes, materials} = useGLTF(islandScene)
 
-    const lastX=useRef(0)
+    const lastX = useRef(0)
+
+    const rotationSpeed = useRef(0)
+
+    const dampingFactor = 0.95
+
+    const handlePointerDown = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setIsRotating(true)
+    }
 
     return (
         <a.group ref={islandRef} {...props}>
