@@ -1,6 +1,6 @@
 import {Canvas} from "@react-three/fiber";
-import {Suspense, useState} from "react";
-
+import {Suspense, useEffect, useRef, useState} from "react";
+import sakura from "../assets/sakura.mp3";
 import HomeInfo from "../components/HomeInfo.jsx";
 import Loader from "../components/Loader.jsx";
 import Bird from "../models/Bird.jsx";
@@ -10,8 +10,22 @@ import Plane from "../models/Plane.jsx";
 
 const Home = () => {
 
+    const audioRef = useRef(new Audio(sakura));
+    audioRef.current.volume = 0.4;
+    audioRef.current.loop = true;
+
     const [currentStage, setCurrentStage] = useState(1);
     const [isRotating, setIsRotating] = useState(false);
+    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+
+    useEffect(() => {
+        if (isPlayingMusic) {
+            audioRef.current.play();
+        }
+        return () => {
+            audioRef.current.pause();
+        };
+    }, [isPlayingMusic]);
 
 
     const adjustBiplaneForScreenSize = () => {
