@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 import Loader from "../components/Loader";
@@ -9,6 +9,9 @@ import Plane from "../models/Plane.jsx";
 
 
 const Home = () => {
+
+    const [isRorating, setIsRorating] = useState(false)
+
     const adjustIslandForScreenSize = () => {
         let screenScale = null;
         let screenPosition = [0, -6.5, -43];
