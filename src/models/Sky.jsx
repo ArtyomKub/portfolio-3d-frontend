@@ -7,7 +7,7 @@ const Sky = () => {
     const sky = useGLTF(skyScene)
     return (
         <mesh>
-            <primitive object={sky.scene}></primitive>
+            <primitive object={sky.scene}/>
         </mesh>
     );
 };
