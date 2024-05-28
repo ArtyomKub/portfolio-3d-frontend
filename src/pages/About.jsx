@@ -44,7 +44,7 @@ export const About = () => {
                 </div>
                 <div className='mt-12 flex'>
                     <VerticalTimeline>
-                        {experiences.map((experience, index) => (
+                        {experiences.map((experience) => (
                             <VerticalTimelineElement
                                 key={experience.company_name}
                                 date={experience.date}
