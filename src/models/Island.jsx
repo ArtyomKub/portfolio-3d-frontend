@@ -52,9 +52,15 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
         if (e.key === 'ArrowLeft') {
             if (!isRotating) setIsRotating(true);
             islandRef.current.rotation.y += 0.01 * Math.PI
-        } else if (e.key==='ArrowRight') {
+        } else if (e.key === 'ArrowRight') {
             if (!isRotating) setIsRotating(true);
             islandRef.current.rotation.y -= 0.01 * Math.PI
+        }
+    }
+
+    const handleKeyUp = (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            setIsRotating(false)
         }
     }
 
