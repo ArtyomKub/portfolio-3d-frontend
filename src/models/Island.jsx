@@ -30,6 +30,11 @@ const Islands = ({isRotating, setIsRotating, ...props}) => {
         setIsRotating(false)
     }
 
+    const handlePointerMove = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+    }
+
 
 
     return (
