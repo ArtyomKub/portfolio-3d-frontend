@@ -7,6 +7,7 @@ import Bird from "../models/Bird.jsx";
 import Sky from "../models/Sky.jsx";
 import Island from "../models/Island.jsx";
 import Plane from "../models/Plane.jsx";
+import {soundoff, soundon} from "../assets/icons/index.js";
 
 const Home = () => {
 
@@ -58,6 +59,7 @@ const Home = () => {
     };
 
     const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
+
     const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
     return (
@@ -105,6 +107,14 @@ const Home = () => {
                     />
                 </Suspense>
             </Canvas>
+            <div className='absolute bottom-2 left-2'>
+                <img
+                    src={!isPlayingMusic ? soundoff : soundon}
+                    alt='jukebox'
+                    onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+                    className='w-10 h-10 cursor-pointer object-contain'
+                />
+            </div>
         </section>
     );
 };
