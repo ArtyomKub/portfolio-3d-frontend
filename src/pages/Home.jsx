@@ -104,6 +104,7 @@ const Home = () => {
                         position={biplanePosition}
                         rotation={[0, 20.1, 0]}
                         scale={biplaneScale}
+                        scal={biplaneScale}
                     />
                 </Suspense>
             </Canvas>
